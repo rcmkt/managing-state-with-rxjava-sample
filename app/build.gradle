@@ -1,0 +1,65 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion build_versions.target_sdk
+    buildToolsVersion build_versions.build_tools
+
+    defaultConfig {
+        applicationId "com.rcmkt.redux.sample"
+
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+}
+
+dependencies {
+    implementation(
+            deps.kotlin.stdlib,
+
+            deps.androidx.app_compat,
+            deps.androidx.constraint_layout,
+            deps.androidx.recyclerview,
+            deps.androidx.design,
+            deps.androidx.ktx,
+
+            deps.dagger.runtime,
+
+            deps.ui.groupie,
+            deps.ui.groupie_kotlin_extensions,
+            deps.ui.state_delegator,
+
+            deps.rx.rxjava2,
+            deps.rx.rxrelay,
+            deps.rx.rxandroid,
+
+            deps.retrofit.runtime,
+            deps.retrofit.gson,
+            deps.retrofit.rxjava,
+
+            deps.lifecycle.runtime,
+            deps.lifecycle.reactivestreams,
+            deps.lifecycle.extensions
+    )
+
+    kapt deps.dagger.compiler
+}
