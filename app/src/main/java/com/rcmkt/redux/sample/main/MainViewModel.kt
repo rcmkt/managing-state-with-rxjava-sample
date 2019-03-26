@@ -2,6 +2,7 @@ package com.rcmkt.redux.sample.main
 
 import com.rcmkt.redux.sample.base.redux.Action
 import com.rcmkt.redux.sample.base.redux.BaseStateViewModel
+import com.rcmkt.redux.sample.internal.SchedulersProvider
 import com.rcmkt.redux.sample.main.recycler.MainItem
 import com.rcmkt.redux.sample.main.redux.MainAction
 import com.rcmkt.redux.sample.main.redux.MainActionsHandler
@@ -10,8 +11,9 @@ import com.xwray.groupie.kotlinandroidextensions.Item
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
-    actionsHandler: MainActionsHandler
-) : BaseStateViewModel<MainState>(actionsHandler) {
+    actionsHandler: MainActionsHandler,
+    schedulersProvider: SchedulersProvider
+) : BaseStateViewModel<MainState>(actionsHandler, schedulersProvider) {
 
     override val initialState = MainState(
         data = null,
@@ -37,6 +39,8 @@ class MainViewModel @Inject constructor(
             else -> state
         }
     }
+
+    fun loadStrings() = sendAction(MainAction.GetData)
 
     private fun mapToUiData(data: List<String>): List<Item> {
         return data.map { MainItem(it, ::sendAction) }

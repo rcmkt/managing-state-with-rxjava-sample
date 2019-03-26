@@ -1,6 +1,5 @@
 package com.rcmkt.redux.sample.main.redux
 
-import androidx.lifecycle.Transformations.map
 import com.rcmkt.redux.sample.base.redux.Action
 import com.rcmkt.redux.sample.base.redux.BaseActionsHandler
 import com.rcmkt.redux.sample.base.redux.Event
