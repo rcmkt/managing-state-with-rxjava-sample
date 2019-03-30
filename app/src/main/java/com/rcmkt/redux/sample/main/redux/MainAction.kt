@@ -10,9 +10,9 @@ sealed class MainAction : Action {
 
     object Success : MainAction()
 
-    class DataLoaded(val data: List<String>) : MainAction()
+    data class DataLoaded(val data: List<String>) : MainAction()
 
-    class ErrorLoading(val error: Throwable) : MainAction()
+    data class ErrorLoading(val error: Throwable) : MainAction()
 
     class SendString(val string: String) : MainAction()
 }

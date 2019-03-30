@@ -61,5 +61,12 @@ dependencies {
             deps.lifecycle.extensions
     )
 
+    testImplementation(
+            deps.test.junit,
+            deps.test.assertj,
+            deps.test.lifecycle,
+            deps.test.mockito_kotlin
+    )
+
     kapt deps.dagger.compiler
 }
