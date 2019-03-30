@@ -1,7 +1,6 @@
 package com.rcmkt.redux.sample.base.redux
 
 import io.reactivex.Observable
-import io.reactivex.ObservableSource
 import io.reactivex.ObservableTransformer
 
 abstract class BaseActionsHandler<S : State> {
@@ -18,11 +17,10 @@ abstract class BaseActionsHandler<S : State> {
             state: Observable<S>,
             onAction: (Action) -> Unit,
             onEvent: (Event) -> Unit
-    ): ObservableSource<Action> {
+    ): Observable<Action> {
         return actions.publish { shared ->
             Observable.merge(
                     getActionsHandlers(shared, state, onAction, onEvent)
-                            .plus(shared)
             )
         }
     }
